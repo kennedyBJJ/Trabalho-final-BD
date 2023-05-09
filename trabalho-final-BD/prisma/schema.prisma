@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+  output = "./ERD.svg"
+
+}
+
+model Sprint{
+  id Int @id @default(autoincrement())
+  description String     //descrição
+  start DateTime         //Data de inicio
+  prev_conclusion DateTime //Previsão de Conlcusão
+  issues Issue[]
+}
+
+model Issue{
+  number Int @id //número da issue
+  name_issue String //nome da issue
+  priority  String //prioridade (revisar)
+  start DateTime //data de inicio
+  conclusion DateTime //Data de conclusão
+  status String @default("a fazer") //status de issue (revisar)
+  id_sprint Int //Id do Sprint
+  sprint Sprint @relation(fields: [id_sprint], references: [id]) //Relação
+  workAt WorkAt[]
+}
+
+model Developer{
+  cod Int @id
+  name String
+  level String @default("Júnior")
+  workAt WorkAt[]
+}
+
+model WorkAt{
+  cod_dev Int 
+  number_issue Int 
+  developer Developer @relation(fields: [cod_dev], references: [cod]) //Relação com Desenvolvedor
+  @@id([cod_dev, number_issue])
+  issue Issue @relation(fields: [number_issue], references: [number]) //Relação com a Issue
+}
