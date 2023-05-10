@@ -29,7 +29,7 @@ model Issue{
   name_issue String //nome da issue
   priority  String //prioridade (revisar)
   start DateTime //data de inicio
-  conclusion DateTime //Data de conclusão
+  conclusion DateTime? //Data de conclusão
   status String @default("a fazer") //status de issue (revisar)
   id_sprint Int //Id do Sprint
   sprint Sprint @relation(fields: [id_sprint], references: [id]) //Relação
@@ -37,16 +37,16 @@ model Issue{
 }
 
 model Developer{
-  cod Int @id
+  cod Int @id //@default(autoincrement())
   name String
-  level String @default("Júnior")
+  level String? @default("Júnior")
   workAt WorkAt[]
 }
 
 model WorkAt{
   cod_dev Int 
-  number_issue Int 
   developer Developer @relation(fields: [cod_dev], references: [cod]) //Relação com Desenvolvedor
-  @@id([cod_dev, number_issue])
+  number_issue Int 
   issue Issue @relation(fields: [number_issue], references: [number]) //Relação com a Issue
+  @@id([cod_dev, number_issue])
 }
