@@ -126,7 +126,7 @@ async function main() {
 	if (await concluida(n)) {
 		const conclusion = await prisma.issue.findFirst({
 			orderBy:{
-				conclusion: 'asc'
+				conclusion: 'desc'
 			}
 		})
 		console.log(`A issue ${n} foi concluiuda na data ${conclusion?.conclusion}`)
