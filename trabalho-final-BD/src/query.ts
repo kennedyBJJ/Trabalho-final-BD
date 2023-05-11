@@ -118,6 +118,7 @@ async function main() {
 		}
 	})
 	console.log('O desenvolvedor que mais concluiu issues foi ' + JSON.stringify(maisTrabalhador))
+	console.log("-------------")
 
 	// Para uma determina sprint concluída qual a sua data de conclusão
 	console.log('Consulta 6:')

@@ -73,29 +73,26 @@ async function main() {
     //     })
     //     n--
     // }
+    
     // deixando nulos as datas de conclusão das issues não concluidas
-    // let issues_modificar: number[]
-    // const issues_em_andamento = await prisma.issue.findMany({
+    // const issues_andamento = await prisma.issue.findMany({
     //     where:{
-    //         status: "A fazer" || "Fazendo"
+    //         status: 'A fazer' || 'Fazendo'
     //     }
     // })
-
-    // for(let i = 0; issues_em_andamento.length; i++){
-    //     issues_modificar.push(issues_em_andamento[i].number);
+    
+    // for (let index = 0; index < issues_andamento.length; index++) {
+    //     const element = await prisma.issue.update({
+    //         where:{
+    //             number: issues_andamento[index].number
+    //         },
+    //         data:{
+    //             conclusion: null
+    //         }
+    //     })
+    //     console.log(element)
     // }
     
-    // for(let i = 0; issues_modificar.length; i++ ){
-    //     const update = await prisma.issue.update({
-    //         where: {
-    //             number: issues_modificar[i]
-    //         },
-    //         data: {
-    //             conclusion: null
-    //         },
-    //     })
-    //     console.log(update)
-    // }
     //relation WorkAt
 
     // const recebeIdIssues = await prisma.issue.findMany({
